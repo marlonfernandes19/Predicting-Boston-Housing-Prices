@@ -48,7 +48,7 @@ First let's check for its keys.
 ```python3
 boston_data.keys()
 ```
-![Image](https://github.com/marlonfernandes19/Predicting-Boston-Housing-Prices/blob/master/res/boston_data1.png)
+![data1](https://github.com/marlonfernandes19/Predicting-Boston-Housing-Prices/blob/master/res/boston_data1.png)
 
 ```python3
 boston_data.feature_names
@@ -58,7 +58,7 @@ Now let's view the description of the dataset.
 ```python3
 boston_data.DESCR
 ```
-![Image](https://github.com/marlonfernandes19/Predicting-Boston-Housing-Prices/blob/master/res/boston_data.DESCR.png)
+![data_DESCR](https://github.com/marlonfernandes19/Predicting-Boston-Housing-Prices/blob/master/res/boston_data.DESCR.png)
 
 ```python3
 boston_data.data.shape
@@ -66,20 +66,20 @@ boston_data.data.shape
 ```python3
 boston_data.target.shape
 ```
-![Image](https://github.com/marlonfernandes19/Predicting-Boston-Housing-Prices/blob/master/res/target_shape.png)
+![Target_shape](https://github.com/marlonfernandes19/Predicting-Boston-Housing-Prices/blob/master/res/target_shape.png)
 
 ```python3
 bos_df = pd.DataFrame(boston_data.data)
 bos_df.columns = boston_data.feature_names
 bos_df.head()
 ```
-![Image](https://github.com/marlonfernandes19/Predicting-Boston-Housing-Prices/blob/master/res/df_column.png)
+![df_col](https://github.com/marlonfernandes19/Predicting-Boston-Housing-Prices/blob/master/res/df_column.png)
 
 
 ```python3
 bos_df.describe()
 ```
-![Image](https://github.com/marlonfernandes19/Predicting-Boston-Housing-Prices/blob/master/res/df_describe.png)
+![df_des](https://github.com/marlonfernandes19/Predicting-Boston-Housing-Prices/blob/master/res/df_describe.png)
 
 ```python3
 x = bos_df
@@ -99,11 +99,30 @@ l_reg = linear_model.LinearRegression()
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.35, random_state=57)
 l_reg.fit(x_train, y_train)
 ```
+![lrm](https://github.com/marlonfernandes19/Predicting-Boston-Housing-Prices/blob/master/res/df_describe.png)
+
 coef
-``
+```python3
+coeff_df = pd.DataFrame(l_reg.coef_.flatten() ,x.columns, columns=['Coefficient'])
+coeff_df
+```
+![coeff](https://github.com/marlonfernandes19/Predicting-Boston-Housing-Prices/blob/master/res/df_describe.png)
 
+Display the Intercept
+```python3
+print(l_reg.intercept_)
+```
+![intercept](https://github.com/marlonfernandes19/Predicting-Boston-Housing-Prices/blob/master/res/df_describe.png)
 
+predictions
+```python3
+predictions = l_reg.predict(x_test)
+```
 
+print the actual price of houses from the testing data set
+```python3
+y_test[0]
+```
 You can use the [editor on GitHub](https://github.com/marlonfernandes19/marlonfernandes19.github.io/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
 
 Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
