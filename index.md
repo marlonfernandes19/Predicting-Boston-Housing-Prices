@@ -99,7 +99,9 @@ l_reg = linear_model.LinearRegression()
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.35, random_state=57)
 l_reg.fit(x_train, y_train)
 ```
-![lrm](https://github.com/marlonfernandes19/Predicting-Boston-Housing-Prices/blob/master/res/df_describe.png)
+```
+Out : LinearRegression(copy_X=True, fit_intercept=True, n_jobs=None, normalize=False)
+```
 
 coef
 ```python3
@@ -112,7 +114,9 @@ Display the Intercept
 ```python3
 print(l_reg.intercept_)
 ```
-![intercept](https://github.com/marlonfernandes19/Predicting-Boston-Housing-Prices/blob/master/res/df_describe.png)
+```
+Out : [44.32583168]
+```
 
 predictions
 ```python3
