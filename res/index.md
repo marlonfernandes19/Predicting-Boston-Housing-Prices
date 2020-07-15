@@ -48,15 +48,59 @@ First let's check for its keys.
 ```python3
 boston_data.keys()
 ```
-Let's view the description of the dataset.
+![Image](https://github.com/marlonfernandes19/Predicting-Boston-Housing-Prices/blob/master/res/boston_data1.png)
+
+```python3
+boston_data.feature_names
+```
+
+Now let's view the description of the dataset.
+```python3
+boston_data.DESCR
+```
+![Image](https://github.com/marlonfernandes19/Predicting-Boston-Housing-Prices/blob/master/res/boston_data.DESCR.png)
+
+```python3
+boston_data.data.shape
+```
+```python3
+boston_data.target.shape
+```
+![Image](https://github.com/marlonfernandes19/Predicting-Boston-Housing-Prices/blob/master/res/target_shape.png)
+
+```python3
+bos_df = pd.DataFrame(boston_data.data)
+bos_df.columns = boston_data.feature_names
+bos_df.head()
+```
+![Image](https://github.com/marlonfernandes19/Predicting-Boston-Housing-Prices/blob/master/res/df_column.png)
 
 
+```python3
+bos_df.describe()
+```
+![Image](https://github.com/marlonfernandes19/Predicting-Boston-Housing-Prices/blob/master/res/df_describe.png)
 
+```python3
+x = bos_df
+y = pd.DataFrame(boston_data.target)
+```
 
-
-
+```python3
 from sklearn import linear_model
 from sklearn.model_selection import train_test_split
+```
+Initialize the linear regression model
+```python3
+l_reg = linear_model.LinearRegression()
+```
+
+```python3
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.35, random_state=57)
+l_reg.fit(x_train, y_train)
+```
+coef
+``
 
 
 
