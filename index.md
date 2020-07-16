@@ -66,7 +66,7 @@ boston_data.feature_names
 boston_data.DESCR
 ```
 
-![data_DESCR](https://github.com/marlonfernandes19/Predicting-Boston-Housing-Prices/blob/master/res/boston_data.DESCR.png)
+![data_DESCR](res/boston_data.DESCR.png?raw=true)
 
 *(partial image of the output)*
 
@@ -94,14 +94,14 @@ bos_df.columns = [boston_data.feature_names]
 bos_df.head()
 ```
 
-![df_col](https://github.com/marlonfernandes19/Predicting-Boston-Housing-Prices/blob/master/res/df_column.png)
+![df_col](res/df_column.png?raw=true)
 
 ### Generate descriptive statistics
 ```python3
 bos_df.describe()
 ```
 
-![df_des](https://github.com/marlonfernandes19/Predicting-Boston-Housing-Prices/blob/master/res/df_describe.png)
+![df_des](res/df_describe.png?raw=true)
 
 *(partial image of the output)*
 
@@ -133,7 +133,7 @@ sns.distplot(bos['MEDV'], bins=30)
 plt.show()
 ```
 
-![dist](https://github.com/marlonfernandes19/Predicting-Boston-Housing-Prices/blob/master/res/dist.png)
+![dist](res/dist.png?raw=true)
 
 Now we will create a correlation matrix that measures the linear relationships between the variables
 
@@ -141,7 +141,7 @@ Now we will create a correlation matrix that measures the linear relationships b
 correlation_matrix = bos.corr().round(2)
 sns.heatmap(data=correlation_matrix, annot=True)
 ```
-![cor_heat](https://github.com/marlonfernandes19/Predicting-Boston-Housing-Prices/blob/master/res/cor_heat.png)
+![cor_heat](https://github.com/marlonfernandes19/Predicting-Boston-Housing-Prices/blob/master/res/cor_heat.png?raw=true)
 
 ### Algorithm : 
 #### Linear regression algorithm
@@ -191,7 +191,7 @@ coeff_df = pd.DataFrame(l_reg.coef_.flatten() ,x.columns, columns=['Coefficient'
 coeff_df
 ```
 
-![coeff](https://github.com/marlonfernandes19/Predicting-Boston-Housing-Prices/blob/master/res/coef.png)
+![coeff](https://github.com/marlonfernandes19/Predicting-Boston-Housing-Prices/blob/master/res/coef.png?raw=true)
 
 
 #### Display the Intercept
@@ -245,13 +245,13 @@ plt.title('Prices vs Predicted prices')
 
 ```
 
-![graph1](https://github.com/marlonfernandes19/Predicting-Boston-Housing-Prices/blob/master/res/graph1.png)
+![graph1](res/graph1.png)
 
 ```
 sns.distplot((y_test - predictions), bins = 50, hist_kws=dict(edgecolor="black", linewidth=1),color='Darkred')
 ```
 
-![dist_1](https://github.com/marlonfernandes19/Predicting-Boston-Housing-Prices/blob/master/res/dist_1.png)
+![dist_1](res/dist_1.png)
 
 ### Now let's check model accuracy
 
@@ -316,9 +316,9 @@ plt.ylabel('Predicted prices')
 plt.title('Prices vs Predicted prices')
 ```
 
-![graph2](https://github.com/marlonfernandes19/Predicting-Boston-Housing-Prices/blob/master/res/graph2.png)
+![graph2](res/graph2.png)
 
-### Print the new prediction for the second row from our y_test data where actual price is 20.3
+### Print the new prediction for the second row from our y_test data
 
 ```python3
 new_predictions[1]
@@ -335,4 +335,4 @@ Here we can observe that the original prediction was 23.59851573 and the new pre
 
 ### We got an accuracy of 90.67%!!
 
-
+For the code, [Click here](Predicting%20Boston%20Housing%20Prices.ipynb) to view the notebook
