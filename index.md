@@ -48,7 +48,7 @@ First let's check for its keys.
 ```python3
 boston_data.keys()
 ```
-*Output : dict_keys(['data', 'target', 'feature_names', 'DESCR', 'filename'])*
+*Out : dict_keys(['data', 'target', 'feature_names', 'DESCR', 'filename'])*
 
 ```python3
 boston_data.feature_names
@@ -59,6 +59,7 @@ Now let's view the description of the dataset.
 ```python3
 boston_data.DESCR
 ```
+*Out  :*
 ![data_DESCR](https://github.com/marlonfernandes19/Predicting-Boston-Housing-Prices/blob/master/res/boston_data.DESCR.png)
 
 ```python3
@@ -75,12 +76,15 @@ bos_df = pd.DataFrame(boston_data.data)
 bos_df.columns = boston_data.feature_names
 bos_df.head()
 ```
+*Out  :*
+
 ![df_col](https://github.com/marlonfernandes19/Predicting-Boston-Housing-Prices/blob/master/res/df_column.png)
 
 
 ```python3
 bos_df.describe()
 ```
+*Out  :*
 ![df_des](https://github.com/marlonfernandes19/Predicting-Boston-Housing-Prices/blob/master/res/df_describe.png)
 
 ```python3
@@ -105,12 +109,15 @@ l_reg.fit(x_train, y_train)
 *Out  : LinearRegression(copy_X=True, fit_intercept=True, n_jobs=None, normalize=False)*
 
 
-coef
+### coef
+
 ```python3
 coeff_df = pd.DataFrame(l_reg.coef_.flatten() ,x.columns, columns=['Coefficient'])
 coeff_df
 ```
-![coeff](https://github.com/marlonfernandes19/Predicting-Boston-Housing-Prices/blob/master/res/df_describe.png)
+*Out :*
+
+![coeff](https://github.com/marlonfernandes19/Predicting-Boston-Housing-Prices/blob/master/res/coef.png)
 
 Display the Intercept
 ```python3
@@ -128,7 +135,21 @@ print the actual price of houses from the testing data set
 ```python3
 y_test[0]
 ```
-![act_price]()
+*Out  :*
+```
+318    23.1
+309    20.3
+449    13.0
+464    21.4
+494    24.5
+       ... 
+240    22.0
+51     20.5
+135    18.1
+424    11.7
+186    50.0
+Name: 0, Length: 178, dtype: float64
+```
 
 Let us see the Price for
 ```python3
@@ -144,15 +165,19 @@ plt.ylabel('Predicted prices')
 plt.title('Prices vs Predicted prices')
 
 ```
-![graph1]()
+*Out :*
+
+![graph1](https://github.com/marlonfernandes19/Predicting-Boston-Housing-Prices/blob/master/res/graph1.png)
 
 ```
 sns.distplot((y_test - predictions), bins = 50, hist_kws=dict(edgecolor="black", linewidth=1),color='Darkred')
 ```
-![dist_1]()
+*Out :*
 
-# Now check model performance/accuracy using,
-# mean squared error which tells you how close a regression line is to a set of points.
+![dist_1](https://github.com/marlonfernandes19/Predicting-Boston-Housing-Prices/blob/master/res/dist_1.png)
+
+Now check model performance/accuracy using,
+ mean squared error which tells you how close a regression line is to a set of points.
 ```python3
 from sklearn.metrics import mean_squared_error
 
@@ -172,7 +197,8 @@ gbr.fit(x_train,np.ravel(y_train,order='C'))
 ```
 
 *Out :*
-*GradientBoostingRegressor(alpha=0.9, ccp_alpha=0.0, criterion='friedman_mse',
+```
+GradientBoostingRegressor(alpha=0.9, ccp_alpha=0.0, criterion='friedman_mse',
                           init=None, learning_rate=0.3, loss='ls', max_depth=3,
                           max_features=None, max_leaf_nodes=None,
                           min_impurity_decrease=0.0, min_impurity_split=None,
@@ -180,7 +206,8 @@ gbr.fit(x_train,np.ravel(y_train,order='C'))
                           min_weight_fraction_leaf=0.0, n_estimators=500,
                           n_iter_no_change=None, presort='deprecated',
                           random_state=None, subsample=1.0, tol=0.0001,
-                          validation_fraction=0.1, verbose=0, warm_start=False)*
+                          validation_fraction=0.1, verbose=0, warm_start=False)
+```
 ```python3
 new_predictions = gbr.predict(x_test)
 ```
@@ -191,7 +218,10 @@ plt.xlabel('Prices')
 plt.ylabel('Predicted prices')
 plt.title('Prices vs Predicted prices')
 ```
-![graph2]()
+*Out  :*
+
+![graph2](https://github.com/marlonfernandes19/Predicting-Boston-Housing-Prices/blob/master/res/graph2.png)
+
 ```python3
 new_predictions[2]
 ```
