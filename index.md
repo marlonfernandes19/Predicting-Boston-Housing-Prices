@@ -48,11 +48,12 @@ First let's check for its keys.
 ```python3
 boston_data.keys()
 ```
-*Out : dict_keys(['data', 'target', 'feature_names', 'DESCR', 'filename']) *
+*Output : dict_keys(['data', 'target', 'feature_names', 'DESCR', 'filename'])*
 
 ```python3
 boston_data.feature_names
 ```
+*Out  : array(['CRIM', 'ZN', 'INDUS', 'CHAS', 'NOX', 'RM', 'AGE', 'DIS', 'RAD', 'TAX', 'PTRATIO', 'B', 'LSTAT'], dtype='<U7')*
 
 Now let's view the description of the dataset.
 ```python3
@@ -63,10 +64,11 @@ boston_data.DESCR
 ```python3
 boston_data.data.shape
 ```
+*Out  : (506, 13)*
 ```python3
 boston_data.target.shape
 ```
-![Target_shape](https://github.com/marlonfernandes19/Predicting-Boston-Housing-Prices/blob/master/res/target_shape.png)
+*Out  : (506,)*
 
 ```python3
 bos_df = pd.DataFrame(boston_data.data)
@@ -99,9 +101,9 @@ l_reg = linear_model.LinearRegression()
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.35, random_state=57)
 l_reg.fit(x_train, y_train)
 ```
-```
-Out : LinearRegression(copy_X=True, fit_intercept=True, n_jobs=None, normalize=False)
-```
+
+*Out  : LinearRegression(copy_X=True, fit_intercept=True, n_jobs=None, normalize=False)*
+
 
 coef
 ```python3
@@ -114,9 +116,8 @@ Display the Intercept
 ```python3
 print(l_reg.intercept_)
 ```
-```
-Out : [44.32583168]
-```
+*Out  : [44.32583168]*
+
 
 predictions
 ```python3
@@ -127,28 +128,77 @@ print the actual price of houses from the testing data set
 ```python3
 y_test[0]
 ```
-You can use the [editor on GitHub](https://github.com/marlonfernandes19/marlonfernandes19.github.io/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
+![act_price]()
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+Let us see the Price for
+```python3
+predictions[2]
 ```
+*Out  : array([17.12720781])*
+
+Let see the graph
+```python3
+plt.scatter(y_test, predictions, edgecolor='Darkred', color='orange')
+plt.xlabel('Prices')
+plt.ylabel('Predicted prices')
+plt.title('Prices vs Predicted prices')
+
+```
+![graph1]()
+
+```
+sns.distplot((y_test - predictions), bins = 50, hist_kws=dict(edgecolor="black", linewidth=1),color='Darkred')
+```
+![dist_1]()
+
+# Now check model performance/accuracy using,
+# mean squared error which tells you how close a regression line is to a set of points.
+```python3
+from sklearn.metrics import mean_squared_error
+
+print(mean_squared_error(y_test, predictions))
+```
+*Out  : 23.026198484642887*
+
+```python3
+l_reg.score(x_test,y_test)
+```
+*Out  : 0.7368039496310854*
+
+```python3
+from sklearn import ensemble
+gbr = ensemble.GradientBoostingRegressor(n_estimators=500, max_depth=3, min_samples_split=3, learning_rate=0.3, loss='ls')
+gbr.fit(x_train,np.ravel(y_train,order='C'))
+```
+
+*Out :*
+*GradientBoostingRegressor(alpha=0.9, ccp_alpha=0.0, criterion='friedman_mse',
+                          init=None, learning_rate=0.3, loss='ls', max_depth=3,
+                          max_features=None, max_leaf_nodes=None,
+                          min_impurity_decrease=0.0, min_impurity_split=None,
+                          min_samples_leaf=1, min_samples_split=3,
+                          min_weight_fraction_leaf=0.0, n_estimators=500,
+                          n_iter_no_change=None, presort='deprecated',
+                          random_state=None, subsample=1.0, tol=0.0001,
+                          validation_fraction=0.1, verbose=0, warm_start=False)*
+```python3
+new_predictions = gbr.predict(x_test)
+```
+
+```python3
+plt.scatter(y_test, new_predictions, edgecolor='Darkred', color='orange')
+plt.xlabel('Prices')
+plt.ylabel('Predicted prices')
+plt.title('Prices vs Predicted prices')
+```
+![graph2]()
+```python3
+new_predictions[2]
+```
+*Out : 14.853728385701617*
+```python3
+gbr.score(x_test,y_test)
+```
+*Out :  0.9066266412990818*
+
+
