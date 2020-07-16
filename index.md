@@ -48,7 +48,7 @@ First let's check for its keys.
 ```python3
 boston_data.keys()
 ```
-![data1](https://github.com/marlonfernandes19/Predicting-Boston-Housing-Prices/blob/master/res/boston_data1.png)
+*Out : dict_keys(['data', 'target', 'feature_names', 'DESCR', 'filename']) *
 
 ```python3
 boston_data.feature_names
