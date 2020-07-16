@@ -1,5 +1,7 @@
 ## Predicting Boston Housing Prices
 
+Assignment during Online Internship with DLithe(www.dlithe.com)
+
 The goal of the project is to obtain an optimal model based on a statistical data to estimate the best price for a customer to buy a house in Boston, Massachusetts.
 
 ### Boston Housing Dataset
